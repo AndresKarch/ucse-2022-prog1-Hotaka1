@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AD505A4B-3EE3-4C1F-A681-0F0510993EF6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Forms</RootNamespace>
+    <AssemblyName>Forms</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormModRecetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModRecetas.Designer.cs">
+      <DependentUpon>FormModRecetas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormComida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComida.Designer.cs">
+      <DependentUpon>FormComida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Idespensa.cs" />
+    <Compile Include="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilidadesGrillas.cs" />
+    <Compile Include="FormModDespensa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModDespensa.Designer.cs">
+      <DependentUpon>FormModDespensa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListSuper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListSuper.Designer.cs">
+      <DependentUpon>FormListSuper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRecetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRecetas.Designer.cs">
+      <DependentUpon>FormRecetas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDespensa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDespensa.Designer.cs">
+      <DependentUpon>FormDespensa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrepararComidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrepararComidas.Designer.cs">
+      <DependentUpon>FormPrepararComidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormModRecetas.resx">
+      <DependentUpon>FormModRecetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComida.resx">
+      <DependentUpon>FormComida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListSuper.resx">
+      <DependentUpon>FormListSuper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModDespensa.resx">
+      <DependentUpon>FormModDespensa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRecetas.resx">
+      <DependentUpon>FormRecetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDespensa.resx">
+      <DependentUpon>FormDespensa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrepararComidas.resx">
+      <DependentUpon>FormPrepararComidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logica\Logica.csproj">
+      <Project>{467b5780-0812-4e0c-ba5c-46a1e41c125f}</Project>
+      <Name>Logica</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

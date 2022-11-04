@@ -38,13 +38,14 @@
             this.TxtCant = new System.Windows.Forms.TextBox();
             this.LBLCantMin = new System.Windows.Forms.Label();
             this.TxtCantMinima = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.CMBTipo = new System.Windows.Forms.ComboBox();
             this.LBLKilos = new System.Windows.Forms.Label();
             this.LBLLitros = new System.Windows.Forms.Label();
             this.CMBTipoBebida = new System.Windows.Forms.ComboBox();
             this.LBLTipoBebida = new System.Windows.Forms.Label();
             this.BTNVolver = new System.Windows.Forms.Button();
+            this.BTNModificar = new System.Windows.Forms.Button();
+            this.Txt_Id = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BtnGuardar
@@ -103,9 +104,9 @@
             this.LBLCant.AutoSize = true;
             this.LBLCant.Location = new System.Drawing.Point(12, 67);
             this.LBLCant.Name = "LBLCant";
-            this.LBLCant.Size = new System.Drawing.Size(49, 13);
+            this.LBLCant.Size = new System.Drawing.Size(48, 13);
             this.LBLCant.TabIndex = 8;
-            this.LBLCant.Text = "Cantidad";
+            this.LBLCant.Text = "cantidad";
             this.LBLCant.Visible = false;
             // 
             // TxtCant
@@ -121,9 +122,9 @@
             this.LBLCantMin.AutoSize = true;
             this.LBLCantMin.Location = new System.Drawing.Point(12, 113);
             this.LBLCantMin.Name = "LBLCantMin";
-            this.LBLCantMin.Size = new System.Drawing.Size(85, 13);
+            this.LBLCantMin.Size = new System.Drawing.Size(84, 13);
             this.LBLCantMin.TabIndex = 10;
-            this.LBLCantMin.Text = "Cantidad Minima";
+            this.LBLCantMin.Text = "cantidad Minima";
             this.LBLCantMin.Visible = false;
             // 
             // TxtCantMinima
@@ -133,15 +134,6 @@
             this.TxtCantMinima.Size = new System.Drawing.Size(100, 20);
             this.TxtCantMinima.TabIndex = 9;
             this.TxtCantMinima.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(351, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Comprobar tipo";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // CMBTipo
             // 
@@ -166,9 +158,9 @@
             this.LBLKilos.AutoSize = true;
             this.LBLKilos.Location = new System.Drawing.Point(12, 67);
             this.LBLKilos.Name = "LBLKilos";
-            this.LBLKilos.Size = new System.Drawing.Size(89, 13);
+            this.LBLKilos.Size = new System.Drawing.Size(88, 13);
             this.LBLKilos.TabIndex = 14;
-            this.LBLKilos.Text = "Cantidad en Kilos";
+            this.LBLKilos.Text = "cantidad en Kilos";
             this.LBLKilos.Visible = false;
             // 
             // LBLLitros
@@ -176,9 +168,9 @@
             this.LBLLitros.AutoSize = true;
             this.LBLLitros.Location = new System.Drawing.Point(12, 67);
             this.LBLLitros.Name = "LBLLitros";
-            this.LBLLitros.Size = new System.Drawing.Size(92, 13);
+            this.LBLLitros.Size = new System.Drawing.Size(91, 13);
             this.LBLLitros.TabIndex = 15;
-            this.LBLLitros.Text = "Cantidad en Litros";
+            this.LBLLitros.Text = "cantidad en Litros";
             this.LBLLitros.Visible = false;
             // 
             // CMBTipoBebida
@@ -214,18 +206,39 @@
             this.BTNVolver.UseVisualStyleBackColor = true;
             this.BTNVolver.Click += new System.EventHandler(this.BTNVolver_Click);
             // 
+            // BTNModificar
+            // 
+            this.BTNModificar.Location = new System.Drawing.Point(118, 168);
+            this.BTNModificar.Name = "BTNModificar";
+            this.BTNModificar.Size = new System.Drawing.Size(75, 23);
+            this.BTNModificar.TabIndex = 19;
+            this.BTNModificar.Text = "Modificar";
+            this.BTNModificar.UseVisualStyleBackColor = true;
+            this.BTNModificar.Visible = false;
+            this.BTNModificar.Click += new System.EventHandler(this.BTNModificar_Click);
+            // 
+            // Txt_Id
+            // 
+            this.Txt_Id.Location = new System.Drawing.Point(12, 213);
+            this.Txt_Id.Name = "Txt_Id";
+            this.Txt_Id.Size = new System.Drawing.Size(100, 20);
+            this.Txt_Id.TabIndex = 20;
+            this.Txt_Id.Visible = false;
+            this.Txt_Id.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // FormModDespensa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Txt_Id);
+            this.Controls.Add(this.BTNModificar);
             this.Controls.Add(this.BTNVolver);
             this.Controls.Add(this.LBLTipoBebida);
             this.Controls.Add(this.CMBTipoBebida);
             this.Controls.Add(this.LBLLitros);
             this.Controls.Add(this.LBLKilos);
             this.Controls.Add(this.CMBTipo);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.LBLCantMin);
             this.Controls.Add(this.TxtCantMinima);
             this.Controls.Add(this.LBLCant);
@@ -256,12 +269,13 @@
         private System.Windows.Forms.TextBox TxtCant;
         private System.Windows.Forms.Label LBLCantMin;
         private System.Windows.Forms.TextBox TxtCantMinima;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox CMBTipo;
         private System.Windows.Forms.Label LBLKilos;
         private System.Windows.Forms.Label LBLLitros;
         private System.Windows.Forms.ComboBox CMBTipoBebida;
         private System.Windows.Forms.Label LBLTipoBebida;
         private System.Windows.Forms.Button BTNVolver;
+        private System.Windows.Forms.Button BTNModificar;
+        private System.Windows.Forms.TextBox Txt_Id;
     }
 }

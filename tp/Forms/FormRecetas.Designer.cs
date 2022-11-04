@@ -32,12 +32,27 @@
             this.BtnNuevoElemento = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BTNVolver = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoReceta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoComida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ingredientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVRecetas)).BeginInit();
             this.SuspendLayout();
             // 
             // DGVRecetas
             // 
             this.DGVRecetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVRecetas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Eliminar,
+            this.Modificar,
+            this.Nombre,
+            this.TipoReceta,
+            this.TipoComida,
+            this.Ingredientes});
             this.DGVRecetas.Location = new System.Drawing.Point(12, 58);
             this.DGVRecetas.Name = "DGVRecetas";
             this.DGVRecetas.Size = new System.Drawing.Size(776, 293);
@@ -52,6 +67,7 @@
             this.BtnNuevoElemento.TabIndex = 1;
             this.BtnNuevoElemento.Text = "Nuevo Elemento";
             this.BtnNuevoElemento.UseVisualStyleBackColor = true;
+            this.BtnNuevoElemento.Click += new System.EventHandler(this.BtnNuevoElemento_Click);
             // 
             // label1
             // 
@@ -71,6 +87,50 @@
             this.BTNVolver.Text = "Volver";
             this.BTNVolver.UseVisualStyleBackColor = true;
             this.BTNVolver.Click += new System.EventHandler(this.BTNVolver_Click);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "Modificar";
+            this.Modificar.Name = "Modificar";
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // TipoReceta
+            // 
+            this.TipoReceta.DataPropertyName = "tipo_receta";
+            this.TipoReceta.HeaderText = "Tipo Receta";
+            this.TipoReceta.Name = "TipoReceta";
+            this.TipoReceta.ReadOnly = true;
+            // 
+            // TipoComida
+            // 
+            this.TipoComida.DataPropertyName = "tipo_comida";
+            this.TipoComida.HeaderText = "TipoComida";
+            this.TipoComida.Name = "TipoComida";
+            this.TipoComida.ReadOnly = true;
+            // 
+            // Ingredientes
+            // 
+            this.Ingredientes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Ingredientes.HeaderText = "Ingredientes";
+            this.Ingredientes.Name = "Ingredientes";
+            this.Ingredientes.Width = 90;
             // 
             // FormRecetas
             // 
@@ -96,5 +156,12 @@
         private System.Windows.Forms.Button BtnNuevoElemento;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BTNVolver;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
+        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoReceta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoComida;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ingredientes;
     }
 }

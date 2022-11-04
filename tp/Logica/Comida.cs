@@ -8,6 +8,7 @@ namespace Logica
 {
     public class Comida
     {
+        Despensa desp = new Despensa();
         Archivo archivos = new Archivo(); 
         Administrador_recetas admin_recetas = new Administrador_recetas();
         public List<Receta> Comidas_ok()
@@ -29,7 +30,7 @@ namespace Logica
                             if (producto is Bebida)
                             {
                                 Bebida bebida_selec = (Bebida)producto;
-                                if (bebida_selec.cantidad<bebida_selec.CantMinima)
+                                if (bebida_selec.cantidad<ingrediente.cantidad)
                                 {
                                     encontrado=false;
                                     break;
@@ -38,7 +39,7 @@ namespace Logica
                             else if (producto is Cantidad)
                             {
                                 Cantidad cantidad_selec = (Cantidad)producto;
-                                if (cantidad_selec.cantidad < cantidad_selec.CantMinima)
+                                if (cantidad_selec.cantidad < ingrediente.cantidad)
                                 {
                                     encontrado = false;
                                     break;
@@ -47,7 +48,7 @@ namespace Logica
                             else if (producto is Kilo_litro)
                             {
                                 Kilo_litro kilolitro_selec = (Kilo_litro)producto;
-                                if (kilolitro_selec.CantKilos < kilolitro_selec.CantMinima)
+                                if (kilolitro_selec.cantidad < ingrediente.cantidad)
                                 {
                                     encontrado = false;
                                     break;
@@ -70,10 +71,10 @@ namespace Logica
                     encontrado = true;
                 }
             }
-            return comidas;
+            return comidasok;
         }
 
-        public void comida_preparada(string nombre)
+        public void comida_preparada(int id)
         {
             List<Receta> historial_comidas = new List<Receta>();
             Receta comida_preparar = new Receta();
@@ -83,7 +84,7 @@ namespace Logica
             despensa = archivos.Buscar();
             foreach (Receta comida in comidas)
             {
-                if (nombre == comida.nombre)
+                if (id == comida.id)
                 {
                     comida_preparar = comida;
                     break;
@@ -92,6 +93,7 @@ namespace Logica
             historial_comidas.Add(comida_preparar);
             // metodo de guardar historial
             List<Receta> historial_recetas = archivos.BuscarHistorial_Recetas();
+            historial_recetas.Add(comida_preparar);
             archivos.GuardarHistorial_Recetas(historial_recetas);
 
             List<Ingrediente> listasuper = archivos.Buscarlistasuper();
@@ -127,8 +129,8 @@ namespace Logica
                         else if (producto is Kilo_litro)
                         {
                             Kilo_litro kilolitro_selec = (Kilo_litro)producto;
-                            kilolitro_selec.CantKilos = kilolitro_selec.CantKilos - ingrediente.cantidad;
-                            if (kilolitro_selec.CantKilos < kilolitro_selec.CantMinima)
+                            kilolitro_selec.cantidad = kilolitro_selec.cantidad - ingrediente.cantidad;
+                            if (kilolitro_selec.cantidad < kilolitro_selec.CantMinima)
                             {
                                 producto_super.producto = ingrediente.producto;
                                 producto_super.cantidad = decimal.ToInt32(Math.Ceiling(kilolitro_selec.CantMinima));
@@ -140,6 +142,50 @@ namespace Logica
             }
             archivos.Guardarlistasuper(listasuper);
             archivos.Cargar(despensa);
+        }
+
+        public List<Ingrediente> lista_super_obtener()
+        {
+            List<Ingrediente> listasuper = new List<Ingrediente>();
+            List<Producto> despensa = archivos.Buscar();
+            foreach (Producto producto in despensa)
+            {
+                int tipo = desp.comprobarTipo(producto.Tipo);
+                if (tipo == 0)
+                {
+                    Kilo_litro kilo_Litro = (Kilo_litro)producto;
+                    if (kilo_Litro.cantidad<kilo_Litro.CantMinima)
+                    {
+                        Ingrediente ingrediente = new Ingrediente();
+                        ingrediente.producto = producto;
+                        ingrediente.cantidad = (int)Math.Round(kilo_Litro.cantidad + kilo_Litro.CantMinima);
+                        listasuper.Add(ingrediente);
+                    }
+                }
+                else if (tipo == 1)
+                {
+                    Cantidad cantidad = (Cantidad)producto;
+                    if (cantidad.cantidad < cantidad.CantMinima)
+                    {
+                        Ingrediente ingrediente = new Ingrediente();
+                        ingrediente.producto = producto;
+                        ingrediente.cantidad = cantidad.cantidad + cantidad.CantMinima;
+                        listasuper.Add(ingrediente);
+                    }
+                }
+                else if (tipo == 2)
+                {
+                    Bebida bebida = (Bebida)producto;
+                    if (bebida.cantidad < bebida.CantMinima)
+                    {
+                        Ingrediente ingrediente = new Ingrediente();
+                        ingrediente.producto = producto;
+                        ingrediente.cantidad = bebida.cantidad + bebida.CantMinima;
+                        listasuper.Add(ingrediente);
+                    }
+                }
+            }
+            return listasuper;
         }
     }
 }

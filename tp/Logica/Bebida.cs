@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    internal class Bebida : Cantidad
+    public class Bebida : Cantidad
     {
         public string tipobebida { get; set; }
     }

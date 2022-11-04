@@ -62,7 +62,7 @@
     <Compile Include="FormComida.Designer.cs">
       <DependentUpon>FormComida.cs</DependentUpon>
     </Compile>
-    <Compile Include="Idespensa.cs" />
+    <Compile Include="IVolver.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forms
 {
-    internal interface Idespensa
+    internal interface IVolver
     {
         void Cargargrilla();
     }

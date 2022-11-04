@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    internal class Cantidad : Producto
+    public class Cantidad : Producto
     {
         public int cantidad { get; set; }
         public int CantMinima { get; set; }

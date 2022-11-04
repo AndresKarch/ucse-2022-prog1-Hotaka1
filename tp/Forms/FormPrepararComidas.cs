@@ -14,6 +14,7 @@ namespace Forms
     public partial class FormPrepararComidas : Form
     {
         Comida comidas = new Comida();
+        Archivo archivo = new Archivo();
         public FormPrepararComidas()
         {
             InitializeComponent();
@@ -30,29 +31,49 @@ namespace Forms
 
         private void DGVDespensa_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            int Json = 8;
+            string prim = archivo.Validacion(Json);
             int indiceColumnaPreparar = UtilidadesGrilla.ObtenerIndice(DGVComidas, "Preparar");
             if (indiceColumnaPreparar == e.ColumnIndex)
             {
-                int indiceidennt = UtilidadesGrilla.ObtenerIndice(DGVComidas, "nombre");
-                string nombre = DGVComidas.Rows[e.RowIndex].Cells[indiceidennt].Value.ToString();
+                int indiceidennt = UtilidadesGrilla.ObtenerIndice(DGVComidas, "Id");
+                int id = int.Parse(DGVComidas.Rows[e.RowIndex].Cells[indiceidennt].Value.ToString());
                 List<Receta> comidas_preparar = comidas.Comidas_ok();
                 Receta comida_seleccionada = new Receta();
                 foreach (Receta comida in comidas_preparar)
                 {
-                    if (comida.nombre == nombre)
+                    if (comida.id == id)
                     {
                         comida_seleccionada = comida;
                         break;
                     }
                 }
-                comidas.comida_preparada(comida_seleccionada.nombre);
+                comidas.comida_preparada(comida_seleccionada.id);
+                              
             }
+            if (prim == "true")
+            {
+                int JsonCambiar =8;
+                archivo.Validacion_terminada(JsonCambiar);
+            }
+            IVolver padre = this.Owner as IVolver;
+            if (padre != null)
+            {
+                padre.Cargargrilla();
+            }
+            this.Close();
+
         }
 
         
      
         private void BTNVolver_Click(object sender, EventArgs e)
         {
+            IVolver padre = this.Owner as IVolver;
+            if (padre != null)
+            {
+                padre.Cargargrilla();
+            }
             this.Close();
         }
 

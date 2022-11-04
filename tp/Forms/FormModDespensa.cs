@@ -20,15 +20,19 @@ namespace Forms
             InitializeComponent();
         }
 
-        public FormModDespensa(string Nombre,string Tipo,int precio,int cant,int cantmin,string tipobebida)
+        public FormModDespensa(string Nombre,string Tipo,string precio,string cant,string cantmin,string tipobebida, string Id)
         {
-            this.TxtNombre.Text = Nombre;
-            this.TxtPrecio.Text = precio.ToString();
-            this.CMBTipo.Text = Tipo;
-            this.TxtCant.Text = cant.ToString();
-            this.TxtCantMinima.Text=cantmin.ToString();
-            this.CMBTipoBebida.Text = tipobebida.ToString();
             InitializeComponent();
+            Txt_Id.Text = Id;
+            TxtNombre.Text = Nombre;
+            TxtPrecio.Text = precio;
+            CMBTipo.Text = Tipo;
+            TxtCant.Text = cant;
+            TxtCantMinima.Text =cantmin;
+            CMBTipoBebida.Text = tipobebida;
+            this.BTNModificar.Visible=true;
+            this.BtnGuardar.Visible = false;
+            this.CMBTipo.Enabled = false;
         }
         private void CMBTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -38,45 +42,58 @@ namespace Forms
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            string prim = Arch.Validacion();
-            int Comprobar = comprobarTipo();
+            int Json = 6;
+            string prim = Arch.Validacion(Json);
+            int Comprobar = despensa.comprobarTipo(CMBTipo.Text);
             switch (Comprobar)
             {
                 case 0:
                     bool valid = false;
                     valid=Validaciondatos();
-                    while (valid == false)
+                    if (valid == true)
                     {
-                        if (valid == true)
-                        {
-                            despensa.Cargakiloslitros(TxtNombre.Text, int.Parse(TxtPrecio.Text), CMBTipo.Text, int.Parse(TxtCant.Text), int.Parse(TxtCantMinima.Text));
-                        }
-                        if (valid == false)
-                        {
-                            valid = Validaciondatos();
-                        }                                             
-                    }
-                    
+                        Kilo_litro kilolitro = new Kilo_litro();
+                        kilolitro.Nombre = TxtNombre.Text;
+                        kilolitro.Precio = int.Parse(TxtPrecio.Text);
+                        kilolitro.Tipo = CMBTipo.Text;
+                        kilolitro.cantidad = decimal.Parse(TxtCant.Text);
+                        kilolitro.CantMinima = decimal.Parse(TxtCantMinima.Text);
+                        despensa.Cargakiloslitros(kilolitro);
+                    }                                                 
                     break;
                 case 1:
                     bool valids = Validaciondatos();
                     if (valids == true)
                     {
-                        despensa.Cargaporcantidad(TxtNombre.Text, int.Parse(TxtPrecio.Text), CMBTipo.Text, int.Parse(TxtCant.Text), int.Parse(TxtCantMinima.Text));
+                        Cantidad cantidad = new Cantidad();
+                        cantidad.Nombre = TxtNombre.Text;
+                        cantidad.Precio = int.Parse(TxtPrecio.Text);
+                        cantidad.Tipo = CMBTipo.Text;
+                        cantidad.cantidad = int.Parse(TxtCant.Text);
+                        cantidad.CantMinima = int.Parse(TxtCantMinima.Text);
+                        despensa.Cargaporcantidad(cantidad);
                     }
                     break;
                 case 2:
-                    bool validx = Validaciondatos();
+                    bool validx = ValidaciondatosBebidas();
                     if (validx == true)
                     {
-                        despensa.Cargabebidas(TxtNombre.Text, int.Parse(TxtPrecio.Text), CMBTipo.Text, int.Parse(TxtCant.Text), int.Parse(TxtCantMinima.Text), CMBTipoBebida.Text);
+                        Bebida bebida = new Bebida();
+                        bebida.Nombre = TxtNombre.Text;
+                        bebida.Precio = int.Parse(TxtPrecio.Text);
+                        bebida.Tipo = CMBTipo.Text;
+                        bebida.cantidad = int.Parse(TxtCant.Text);
+                        bebida.CantMinima = int.Parse(TxtCantMinima.Text);
+                        bebida.tipobebida = CMBTipoBebida.Text;
+                        despensa.Cargabebidas(bebida);
                     }
                         
                     break;
             }
             if (prim == "true")
             {
-                Arch.Validacion_terminada();
+                int JsonCambiar = 6;
+                Arch.Validacion_terminada(JsonCambiar);
             }
             TxtNombre.Text = "";
             TxtPrecio.Text = "";
@@ -85,7 +102,8 @@ namespace Forms
             CMBTipo.Text="";
             CMBTipoBebida.Text="";
             ComprobarVisible(null);
-            
+           
+
         }
 
         private bool Validaciondatos()
@@ -116,7 +134,7 @@ namespace Forms
         }
         private void ComprobarVisible(string Tipo)
         {
-            int comprobacion = comprobarTipo();
+            int comprobacion = despensa.comprobarTipo(CMBTipo.Text);
             switch (comprobacion)
             {
                 case 0:
@@ -150,28 +168,12 @@ namespace Forms
                     TxtCantMinima.Visible = false;
                     LBLTipoBebida.Visible = false;
                     CMBTipoBebida.Visible = false;
+                    LBLKilos.Visible = false;
                     break;
             }
             
         }
-        private int comprobarTipo()
-        {
-            if (CMBTipo.Text == "Queso" || CMBTipo.Text == "Carne" || CMBTipo.Text == "Pescado" || CMBTipo.Text == "Panaderia" || CMBTipo.Text == "Lacteo")
-            {
-                return 0;
-            }
-            if (CMBTipo.Text == "Hortaliza" || CMBTipo.Text == "Fruta")
-            {
-                return 1;
-            }
-            if (CMBTipo.Text == "Bebida")
-            {
-                return 2;
-            }
-            return 3;
-           
-            
-        }
+        
         private void FormModDespensa_Load(object sender, EventArgs e)
         {
 
@@ -181,12 +183,63 @@ namespace Forms
 
         private void BTNVolver_Click(object sender, EventArgs e)
         {
-            Idespensa padre = this.Owner as Idespensa;
+           IVolver padre = this.Owner as IVolver;
+           if (padre != null)
+           {
+               padre.Cargargrilla();
+           }
+           this.Close();
+
+        }
+
+        private void BTNModificar_Click(object sender, EventArgs e)
+        {
+            int tipo_comprobacion = despensa.comprobarTipo(CMBTipo.Text);
+            if (tipo_comprobacion == 0)
+            {
+                Kilo_litro kilolitro = new Kilo_litro();
+                kilolitro.id = int.Parse(Txt_Id.Text);
+                kilolitro.Nombre = TxtNombre.Text;
+                kilolitro.Precio = int.Parse(TxtPrecio.Text);
+                kilolitro.Tipo = CMBTipo.Text;
+                kilolitro.cantidad = decimal.Parse(TxtCant.Text);
+                kilolitro.CantMinima = decimal.Parse(TxtCantMinima.Text);
+                despensa.Modificarproducto(kilolitro);
+            }
+            else if (tipo_comprobacion == 2)
+            {
+                Bebida bebida = new Bebida();
+                bebida.id = int.Parse(Txt_Id.Text);
+                bebida.Nombre = TxtNombre.Text;
+                bebida.Tipo = CMBTipo.Text;
+                bebida.Precio = int.Parse(TxtPrecio.Text);
+                bebida.cantidad = int.Parse(TxtCant.Text);
+                bebida.CantMinima = int.Parse(TxtCantMinima.Text);
+                bebida.tipobebida = CMBTipoBebida.Text;
+                despensa.Modificarproducto(bebida);
+            }
+            else if (tipo_comprobacion == 1)
+            {
+                Cantidad cantidad = new Cantidad();
+                cantidad.id = int.Parse(Txt_Id.Text);
+                cantidad.Nombre = TxtNombre.Text;
+                cantidad.Tipo = CMBTipo.Text;
+                cantidad.Precio = int.Parse(TxtPrecio.Text);
+                cantidad.cantidad = int.Parse(TxtCant.Text);
+                cantidad.CantMinima = int.Parse(TxtCantMinima.Text);
+                despensa.Modificarproducto(cantidad);
+            }
+            IVolver padre = this.Owner as IVolver;
             if (padre != null)
             {
                 padre.Cargargrilla();
             }
             this.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

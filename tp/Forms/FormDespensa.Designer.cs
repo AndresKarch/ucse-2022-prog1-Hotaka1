@@ -28,18 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnNuevoElemento = new System.Windows.Forms.Button();
             this.DGVDespensa = new System.Windows.Forms.DataGridView();
+            this.BTNVolver = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidades = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantidadMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoBebida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.BTNVolver = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVDespensa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,58 +72,17 @@
             this.Nombre,
             this.Precio,
             this.Tipo,
-            this.Cantidad,
+            this.Cantidades,
             this.CantidadMin,
             this.TipoBebida,
             this.Eliminar,
-            this.Modificar});
+            this.Modificar,
+            this.Id});
             this.DGVDespensa.Location = new System.Drawing.Point(12, 90);
             this.DGVDespensa.Name = "DGVDespensa";
-            this.DGVDespensa.Size = new System.Drawing.Size(848, 293);
+            this.DGVDespensa.Size = new System.Drawing.Size(950, 293);
             this.DGVDespensa.TabIndex = 5;
             this.DGVDespensa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVDespensa_CellContentClick);
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            // 
-            // Tipo
-            // 
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // CantidadMin
-            // 
-            this.CantidadMin.HeaderText = "Cantidad Minima";
-            this.CantidadMin.Name = "CantidadMin";
-            // 
-            // TipoBebida
-            // 
-            this.TipoBebida.HeaderText = "TipoBebida";
-            this.TipoBebida.Name = "TipoBebida";
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Text = "Eliminar";
-            // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "Modificar";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.Text = "Modificar";
             // 
             // BTNVolver
             // 
@@ -132,11 +94,77 @@
             this.BTNVolver.UseVisualStyleBackColor = true;
             this.BTNVolver.Click += new System.EventHandler(this.BTNVolver_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            this.Precio.DataPropertyName = "Precio";
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            this.Tipo.DataPropertyName = "Tipo";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // Cantidades
+            // 
+            this.Cantidades.DataPropertyName = "cantidad";
+            this.Cantidades.HeaderText = "Cantidades";
+            this.Cantidades.Name = "Cantidades";
+            this.Cantidades.ReadOnly = true;
+            // 
+            // CantidadMin
+            // 
+            this.CantidadMin.DataPropertyName = "CantMinima";
+            this.CantidadMin.HeaderText = "cantidad Minima";
+            this.CantidadMin.Name = "CantidadMin";
+            this.CantidadMin.ReadOnly = true;
+            // 
+            // TipoBebida
+            // 
+            this.TipoBebida.DataPropertyName = "tipobebida";
+            this.TipoBebida.HeaderText = "TipoBebida";
+            this.TipoBebida.Name = "TipoBebida";
+            this.TipoBebida.ReadOnly = true;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Text = "Eliminar";
+            // 
+            // Modificar
+            // 
+            this.Modificar.HeaderText = "";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.Text = "Modificar";
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
             // FormDespensa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 450);
+            this.ClientSize = new System.Drawing.Size(1073, 450);
             this.Controls.Add(this.BTNVolver);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnNuevoElemento);
@@ -155,14 +183,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnNuevoElemento;
         private System.Windows.Forms.DataGridView DGVDespensa;
+        private System.Windows.Forms.Button BTNVolver;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidades;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadMin;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoBebida;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
         private System.Windows.Forms.DataGridViewButtonColumn Modificar;
-        private System.Windows.Forms.Button BTNVolver;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }

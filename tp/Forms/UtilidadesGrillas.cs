@@ -11,23 +11,26 @@ namespace Forms
     {
         public static void CargarCamposAcciones(DataGridView grilla)
         {
-            int indiceColumnaEditar = UtilidadesGrilla.ObtenerIndice(grilla, "Editar");
+            int indiceColumnaEditar = UtilidadesGrilla.ObtenerIndice(grilla, "Modificar");
             int indiceColumnaEliminar = UtilidadesGrilla.ObtenerIndice(grilla, "Eliminar");
             int indiceColumnaPreparar = UtilidadesGrilla.ObtenerIndice(grilla, "Preparar");
+            
 
             foreach (DataGridViewRow row in grilla.Rows)
             {
                 row.Cells[indiceColumnaEliminar].Value = "Eliminar";
-                row.Cells[indiceColumnaEditar].Value = "Editar";
+                row.Cells[indiceColumnaEditar].Value = "Modificar";
                 row.Cells[indiceColumnaPreparar].Value = "Preparar";
             }
         }
 
         internal static int ObtenerIndice(DataGridView grilla, string nombreColumna)
         {
+            
             foreach (DataGridViewColumn column in grilla.Columns)
             {
-                if (column.Name == nombreColumna)
+                string nombre = column.Name;
+                if (nombre == nombreColumna)
                 {
                     return column.Index;
                 }

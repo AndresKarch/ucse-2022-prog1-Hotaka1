@@ -11,10 +11,11 @@ using Logica;
 
 namespace Forms
 {
-    public partial class FormDespensa : Form,Idespensa
+    public partial class FormDespensa : Form,IVolver
     {
         Archivo archivo = new Archivo();
         Producto producto = new Producto();
+        Despensa Desp = new Despensa();
        
         public FormDespensa()
         {
@@ -23,23 +24,33 @@ namespace Forms
 
         private void DGVDespensa_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int indiceEditar = UtilidadesGrilla.ObtenerIndice(DGVDespensa, "Editar");
+            int IndiceModificar = UtilidadesGrilla.ObtenerIndice(DGVDespensa, "Modificar");
             int indiceEliminar = UtilidadesGrilla.ObtenerIndice(DGVDespensa, "Eliminar");
 
-            if (indiceEditar == e.ColumnIndex)
+            if (IndiceModificar == e.ColumnIndex)
             {
                 //Hizo clic en editar
-                var indiceIdentificador = UtilidadesGrilla.ObtenerIndice(DGVDespensa, "Codigo");
-                var Nombre = DGVDespensa.Rows[e.RowIndex].Cells[indiceIdentificador].Value.ToString();
-                var Precio = DGVDespensa.Rows[e.RowIndex].Cells[indiceIdentificador].Value.ToString();
-                var tipo = DGVDespensa.Rows[e.RowIndex].Cells[indiceIdentificador].Value.ToString();
-                var cant = DGVDespensa.Rows[e.RowIndex].Cells[indiceIdentificador].Value.ToString();
-                var cantMin = DGVDespensa.Rows[e.RowIndex].Cells[indiceIdentificador].Value.ToString();
-                var Tipobebida = DGVDespensa.Rows[e.RowIndex].Cells[indiceIdentificador].Value.ToString();
+                var identificadorfila = UtilidadesGrilla.ObtenerIndice(DGVDespensa, "Nombre");
+                
+                var Nombre = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                identificadorfila ++;
+                var Precio = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                identificadorfila++;
+                var tipo = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                identificadorfila++;
+                var cant = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                identificadorfila++;
+                var cantMin = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                identificadorfila++;
+                var Tipobebida = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                identificadorfila=identificadorfila+3;                
+                var Id = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                
 
-                FormModDespensa formCarga = new FormModDespensa();
+                FormModDespensa formCarga = new FormModDespensa(Nombre,tipo,Precio,cant,cantMin,Tipobebida,Id);
 
                 formCarga.ShowDialog(this);
+                
             }
 
             if (indiceEliminar == e.ColumnIndex)
@@ -49,19 +60,70 @@ namespace Forms
 
                 if (resultado == DialogResult.OK)
                 {
-                    //Invocar a la logica para eliminar registro.
+                    Producto Prod = new Producto();
+                    var identificadorfila = UtilidadesGrilla.ObtenerIndice(DGVDespensa, "Nombre");
+                    var Nombre = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                    identificadorfila++;
+                    var Precio = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                    identificadorfila++;
+                    var tipo = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                    identificadorfila++;
+                    var cant = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                    identificadorfila++;
+                    var cantMin = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                    identificadorfila++;
+                    var Tipobebida = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                    identificadorfila = identificadorfila + 3;
+                    var Id = DGVDespensa.Rows[e.RowIndex].Cells[identificadorfila].Value.ToString();
+                    int tipox= Desp.comprobarTipo(tipo.ToString());
+
+                    if (tipox == 0)
+                    {
+                        Kilo_litro kilitro = new Kilo_litro();
+                        kilitro.Nombre = Nombre;
+                        kilitro.Tipo = tipo;
+                        kilitro.Precio = int.Parse(Precio);
+                        kilitro.cantidad = int.Parse(cant);
+                        kilitro.CantMinima = int.Parse(cantMin);
+                        kilitro.id = int.Parse(Id);
+                        Desp.Eliminarproducto(kilitro);
+                    }
+                    else if (tipox == 1)
+                    {
+                        Cantidad cantidad = new Logica.Cantidad();
+                        cantidad.Nombre = Nombre;
+                        cantidad.Tipo = tipo;
+                        cantidad.Precio = int.Parse(Precio);
+                        cantidad.cantidad = int.Parse(cant);
+                        cantidad.CantMinima = int.Parse(cantMin);
+                        cantidad.id = int.Parse(Id);
+                        Desp.Eliminarproducto(cantidad);
+                    }
+                    else if (tipox == 2)
+                    {
+                        Bebida bebidas = new Bebida();
+                        bebidas.Nombre = Nombre;
+                        bebidas.Tipo = tipo;
+                        bebidas.Precio = int.Parse(Precio);
+                        bebidas.cantidad = int.Parse(cant);
+                        bebidas.CantMinima = int.Parse(cantMin);
+                        bebidas.id = int.Parse(Id);
+                        bebidas.tipobebida = TipoBebida.ToString();
+                        Desp.Eliminarproducto(bebidas);
+                    }
                     
 
                     ActualizarGrilla();
                 }
             }
         }
-        
+
         private void FormDespensa_Load(object sender, EventArgs e)
         {
             
             DGVDespensa.AutoGenerateColumns = false;
-            string Primero= archivo.Validacion();
+            int Json = 6; //En direcciones el 6 es el json validador con el true adentro.
+            string Primero= archivo.Validacion(Json);
             if (Primero == "true")
             {
                 DGVDespensa.DataSource = null;
@@ -74,6 +136,7 @@ namespace Forms
             }
             else
             {
+                DGVDespensa.DataSource = null;
                 ActualizarGrilla();
             }
             
@@ -81,6 +144,7 @@ namespace Forms
 
         public void Cargargrilla()
         {
+            DGVDespensa.DataSource = null;
             ActualizarGrilla();
         }
         
@@ -89,10 +153,30 @@ namespace Forms
         private void ActualizarGrilla()
         {
             DGVDespensa.DataSource = null;
+            DGVDespensa.RowCount = 1;
             List<Producto> productos = new List<Producto>();
-            productos = archivo.Buscar();
+            productos = archivo.eliminados();
+            foreach  (Producto producto in productos)
+            {
+                if (producto is Bebida)
+                {
+                    Bebida bebida = new Bebida();
+                    bebida = (Bebida)producto;
+                    DGVDespensa.Rows.Add(bebida.Nombre, bebida.Precio, bebida.Tipo, bebida.cantidad, bebida.CantMinima, bebida.tipobebida, "Eliminar","Modificar",bebida.id);
+                }
+                else if (producto is Cantidad)
+                {
+                    Cantidad cantidad = (Cantidad)producto;
+                    DGVDespensa.Rows.Add(cantidad.Nombre, cantidad.Precio, cantidad.Tipo, cantidad.cantidad, cantidad.CantMinima,"","Eliminar","Modificar",cantidad.id);
+                }
+                else if (producto is Kilo_litro)
+                {
+                    Kilo_litro kilolitro = (Kilo_litro)producto;
+                    DGVDespensa.Rows.Add(kilolitro.Nombre, kilolitro.Precio, kilolitro.Tipo, kilolitro.cantidad, kilolitro.CantMinima, "","Eliminar","Modificar",kilolitro.id) ;
+                }
+            }
             
-            DGVDespensa.DataSource = archivo.Buscar();
+            //DGVDespensa.DataSource = productos;
         }
 
         private void BTNVolver_Click(object sender, EventArgs e)
@@ -104,6 +188,7 @@ namespace Forms
         {
             FormModDespensa moddespensa = new FormModDespensa();
             moddespensa.ShowDialog(this);
+            ActualizarGrilla();
         }
     }
 }

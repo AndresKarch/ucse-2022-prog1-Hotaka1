@@ -10,15 +10,51 @@ namespace Logica
 {
     public class Archivo
     {
+        public List<Producto> eliminados()
+        {
+            List<Producto> despensa = new List<Producto>();
+            List<Producto> lista_no_eliminados = new List<Producto>();
+            despensa = Buscar();
+            foreach (Producto producto in despensa)
+            {
+                if (producto is Bebida)
+                {
+                    Bebida bebida = (Bebida)producto;
+                    if (bebida.cantidad != 0 && bebida.CantMinima != 0)
+                    {
+                        lista_no_eliminados.Add(bebida);
+                    }
+                }
+                else if (producto is Cantidad)
+                {
+                    Cantidad cantidad = (Cantidad)producto;
+                    if (cantidad.cantidad != 0 && cantidad.CantMinima != 0)
+                    {
+                        lista_no_eliminados.Add(cantidad);
+                    }
+                }
+                else if (producto is Kilo_litro)
+                {
+                    Kilo_litro kilolitro = (Kilo_litro)producto;
+                    if (kilolitro.cantidad != 0 && kilolitro.CantMinima != 0)
+                    {
+                        lista_no_eliminados.Add(kilolitro);
+                    }
+                }
+            }
+            return lista_no_eliminados;
+        }
         List<string> direcciones = new List<string>()
         {
             @"C:\Carpeta_json\Bebidas.json",
-            @"C:\Carpeta_json\Cantidad.json",
+            @"C:\Carpeta_json\cantidad.json",
             @"C:\Carpeta_json\Kilo_litro.json",
             @"C:\Carpeta_json\Recetas.json",
             @"C:\Carpeta_json\Historial.json",
             @"C:\Carpeta_json\listasuper.json",
-            @"C:\Carpeta_json\validar.json"
+            @"C:\Carpeta_json\validar.json",
+            @"C:\Carpeta_json\validarrecetas.json",
+            @"C:\Carpeta_json\validarcomidas.json"
         };
 
         public void Crear_carpeta()
@@ -26,46 +62,62 @@ namespace Logica
             //bool existe = File.Exists(@"C:\Carpeta_json");
             if ((File.Exists(@"C:\Carpeta_json\Validar.json")) == true)
             {
-
             }
             else
             {
                 Directory.CreateDirectory(@"C:\Carpeta_json");
-                string validacion = JsonConvert.SerializeObject(true, Formatting.Indented);
-                for (int i = 0; i < direcciones.Count-1; i++)
+                using (FileStream file = new FileStream(direcciones[0], FileMode.Create))
                 {
-                    File.WriteAllText(direcciones[i],validacion);
+                    string validacion = JsonConvert.SerializeObject(true, Formatting.Indented);
+                    for (int i = 0; i < direcciones.Count; i++)
+                    {
+                        file.Close();
+                        File.WriteAllText(direcciones[i], validacion);                      
+                    }
+                    //File.WriteAllText(direcciones[6], validacion);
+                    //file.Close();
                 }
-                File.WriteAllText(direcciones[6], validacion);
-               
             }
         }
 
         //Producto
-        public string Validacion()
+        //TODAS LAS VALIDACIONES SE HACEN CON ESTOS 2 METODOS INGRESANDO SU VALOR
+        public string Validacion(int Json)
+        {
+            StreamReader v = new StreamReader(direcciones[Json]);
+            string jsonString = v.ReadToEnd();
+            if(jsonString!="true" && jsonString !="false")
+                return "false";
+            var validacion = JsonConvert.DeserializeObject<string>(jsonString);
+            v.Close();
+            return validacion;
+        }
+        public void Validacion_terminada(int Json)
+        {
+            string info_base = "false";
+            File.WriteAllText(direcciones[Json], info_base);
+        }
+
+        /*public string Validacion()
         {
             StreamReader v = new StreamReader(direcciones[6]);
             string jsonString = v.ReadToEnd();
             var validacion = JsonConvert.DeserializeObject<string>(jsonString);
+            v.Close();
             return validacion;
-        }
-
-        public void Validacion_terminada()
-        {
-            string info_base = "false";
-            File.WriteAllText(direcciones[6], info_base);
-        }
+        }*/
 
         //Recetas
-        public string ValidacionR()
+        /*public string ValidacionR()
         {
             StreamReader v = new StreamReader(direcciones[3]);
             string jsonString = v.ReadToEnd();
             var validacion = JsonConvert.DeserializeObject<string>(jsonString);
+            v.Close();
             return validacion;
         }
 
-        public void Validacion_terminadaR()
+        /*public void Validacion_terminadaR()
         {
             string info_base = "false";
             File.WriteAllText(direcciones[3], info_base);
@@ -77,6 +129,7 @@ namespace Logica
             StreamReader v = new StreamReader(direcciones[4]);
             string jsonString = v.ReadToEnd();
             var validacion = JsonConvert.DeserializeObject<string>(jsonString);
+            v.Close();
             return validacion;
         }
 
@@ -92,6 +145,7 @@ namespace Logica
             StreamReader v = new StreamReader(direcciones[5]);
             string jsonString = v.ReadToEnd();
             var validacion = JsonConvert.DeserializeObject<string>(jsonString);
+            v.Close();
             return validacion;
         }
 
@@ -99,14 +153,13 @@ namespace Logica
         {
             string info_base = "false";
             File.WriteAllText(direcciones[5], info_base);
-        }
+        }*/
 
 
 
         #region Serializar // Metodo Cargar() despensa
         public void Cargar(List<Producto> carga)
-        {
-            
+        {       
             List<Producto> cargadivididaB = new List<Producto>();
             List<Producto> cargadivididac = new List<Producto>();
             List<Producto> cargadivididak = new List<Producto>();
@@ -119,16 +172,26 @@ namespace Logica
                 else if (p is Kilo_litro)
                     cargadivididak.Add(p);
             }
-            using (StreamWriter b = new StreamWriter (direcciones[0],true))
+
+            using (StreamWriter file = new StreamWriter(direcciones[0],false))
             {
-                string bebida = JsonConvert.SerializeObject(cargadivididaB, Formatting.Indented);
-                File.WriteAllText(direcciones[0], bebida);
+                string jsonString = JsonConvert.SerializeObject(cargadivididaB, Formatting.Indented);
+                file.WriteLine(jsonString);
+                file.Close();
             }
 
-            string cantidad = JsonConvert.SerializeObject(cargadivididac, Formatting.Indented);
-            File.WriteAllText(direcciones[1], cantidad);
-            string kilo_litro = JsonConvert.SerializeObject(cargadivididak, Formatting.Indented);
-            File.WriteAllText(direcciones[2], kilo_litro);
+            using (StreamWriter file = new StreamWriter(direcciones[1], false))
+            {
+                string cantidad = JsonConvert.SerializeObject(cargadivididac, Formatting.Indented);
+                file.WriteLine(cantidad);
+                file.Close();
+            }
+            using (StreamWriter file = new StreamWriter(direcciones[2]))
+            {
+                string kilo_litro = JsonConvert.SerializeObject(cargadivididak, Formatting.Indented);
+                file.WriteLine(kilo_litro);
+                file.Close();
+            }
         }
         #endregion      
 
@@ -150,17 +213,20 @@ namespace Logica
         //PARA DESERIALIZAR
         public dynamic ConseguirLista(int i)
         {
-            
-            StreamReader r = new StreamReader(direcciones[i]);
-            string jsonString = r.ReadToEnd();
-            if (jsonString == "true")
-                return null;
-            switch (i)
+            //file.Close();
+            using (StreamReader r = new StreamReader(direcciones[i]))
             {
-                case 0: var lista = JsonConvert.DeserializeObject<List<Bebida>>(jsonString); return lista;
-                case 1: var listac = JsonConvert.DeserializeObject<List<Cantidad>>(jsonString); return listac;
-                case 2: var listak = JsonConvert.DeserializeObject<List<Kilo_litro>>(jsonString); return listak;
-                default: lista = null; return lista;
+                string jsonString = r.ReadToEnd();
+                r.Close();
+                if (jsonString == "true")
+                    return null;
+                switch (i)
+                {
+                    case 0: var lista = JsonConvert.DeserializeObject<List<Bebida>>(jsonString); return lista;
+                    case 1: var listac = JsonConvert.DeserializeObject<List<Cantidad>>(jsonString); return listac;
+                    case 2: var listak = JsonConvert.DeserializeObject<List<Kilo_litro>>(jsonString); return listak;
+                    default: lista = null; return lista;
+                }              
             }
         }
         #endregion
@@ -169,8 +235,9 @@ namespace Logica
         public List<Receta_archivos> leer_recetas_archivos()
         {
             List<Receta_archivos> archivos_recetas = new List<Receta_archivos>();
-            StreamReader r = new StreamReader(direcciones[4]);
+            StreamReader r = new StreamReader(direcciones[3]);
             string jsonString = r.ReadToEnd();
+            r.Close();
             if (jsonString == "true")
                 return archivos_recetas;
             else
@@ -181,11 +248,10 @@ namespace Logica
         }
 
        
-        public void guardar_recetas_archivos()
+        public void guardar_recetas_archivos(List<Receta_archivos> archivos_recetas)
         {
-            List<Receta_archivos> archivos_recetas = new List<Receta_archivos>();
             string R = JsonConvert.SerializeObject(archivos_recetas, Formatting.Indented);
-            File.WriteAllText(direcciones[4], R);
+            File.WriteAllText(direcciones[3], R);
         }
 
         public void GuardarHistorial_Recetas(List<Receta> historial_Res)
@@ -199,13 +265,14 @@ namespace Logica
             List<Receta> Recetas_Historial = new List<Receta>();
             StreamReader r = new StreamReader(direcciones[5]);
             string jsonString = r.ReadToEnd();
+            r.Close();
             if (jsonString == "true")
                 return Recetas_Historial;
             else
             {
                 var Historial = JsonConvert.DeserializeObject<List<Receta>>(jsonString);
                 return Historial;
-            }
+            }         
         }
         public void Guardarlistasuper(List<Ingrediente> listasuper)
         {
@@ -218,13 +285,14 @@ namespace Logica
             List<Ingrediente> listasuper = new List<Ingrediente>();
             StreamReader r = new StreamReader(direcciones[6]);
             string jsonString = r.ReadToEnd();
-            if (jsonString == "true")
+            r.Close();
+            if (jsonString == "true"||jsonString=="false")
                 return listasuper;
             else
             {
                 listasuper = JsonConvert.DeserializeObject<List<Ingrediente>>(jsonString);
                 return listasuper;
-            }        
+            }          
         }
 
         //List<b> LB = LP.where(x is bebidas). select(x as bebidas).tolist

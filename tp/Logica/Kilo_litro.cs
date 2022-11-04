@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    internal class Kilo_litro : Producto
+    public class Kilo_litro : Producto
     {
-        public decimal CantKilos { get; set; }
+        public decimal cantidad { get; set; }
         public decimal CantMinima { get; set; }
     }
 }

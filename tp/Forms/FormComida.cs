@@ -11,7 +11,7 @@ using Logica;
 
 namespace Forms
 {
-    public partial class FormComida : Form
+    public partial class FormComida : Form,IVolver
     {
         Comida comida = new Comida();
         Archivo Arch = new Archivo();
@@ -24,13 +24,19 @@ namespace Forms
         {
             this.Close();
         }
+        public void Cargargrilla()
+        {
+            DGVHistorial.DataSource = null;
+            actualizargrilla();
+        }
 
         private void FormComida_Load(object sender, EventArgs e)
-        {            
-            string Primero = Arch.ValidacionH();
+        {
+            int Json = 8;
+            string Primero = Arch.Validacion(Json);
             if (Primero == "true")
             {
-                dataGridView1.DataSource = null;
+                DGVHistorial.DataSource = null;
                 DialogResult resultado = MessageBox.Show("La lista esta vacia ya que nunca preparaste una comida", "Historial Vacia", MessageBoxButtons.OKCancel);
                 if (resultado == DialogResult.OK)
                 {
@@ -46,8 +52,8 @@ namespace Forms
 
         private void actualizargrilla()
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = Arch.BuscarHistorial_Recetas();
+            DGVHistorial.DataSource = null;
+            DGVHistorial.DataSource = Arch.BuscarHistorial_Recetas();
         }
 
         private void Preparar_Click(object sender, EventArgs e)

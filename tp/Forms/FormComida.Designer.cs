@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DGVHistorial = new System.Windows.Forms.DataGridView();
             this.BTNVolver = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Preparar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVHistorial)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // DGVHistorial
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 63);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(776, 291);
-            this.dataGridView1.TabIndex = 0;
+            this.DGVHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVHistorial.Location = new System.Drawing.Point(12, 63);
+            this.DGVHistorial.Name = "DGVHistorial";
+            this.DGVHistorial.Size = new System.Drawing.Size(776, 291);
+            this.DGVHistorial.TabIndex = 0;
             // 
             // BTNVolver
             // 
@@ -80,11 +80,11 @@
             this.Controls.Add(this.Preparar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BTNVolver);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DGVHistorial);
             this.Name = "FormComida";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.FormComida_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVHistorial)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,7 +92,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DGVHistorial;
         private System.Windows.Forms.Button BTNVolver;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Preparar;

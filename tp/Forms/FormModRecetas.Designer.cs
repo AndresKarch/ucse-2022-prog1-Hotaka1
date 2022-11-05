@@ -43,6 +43,7 @@
             this.BTNCrear = new System.Windows.Forms.Button();
             this.BtnModificar = new System.Windows.Forms.Button();
             this.Txtid = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_ingredientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -185,11 +186,22 @@
             this.Txtid.Visible = false;
             this.Txtid.TextChanged += new System.EventHandler(this.Txtid_TextChanged);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(211, 384);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(521, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Aclaración: a la hora de modificar se deben cargar los ingredientes y sus respect" +
+    "ivas cantidades nuevamente";
+            // 
             // FormModRecetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.Txtid);
             this.Controls.Add(this.BtnModificar);
             this.Controls.Add(this.BTNCrear);
@@ -228,5 +240,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.Button BtnModificar;
         private System.Windows.Forms.TextBox Txtid;
+        private System.Windows.Forms.Label label4;
     }
 }

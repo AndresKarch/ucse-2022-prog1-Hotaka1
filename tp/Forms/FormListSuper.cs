@@ -55,6 +55,7 @@ namespace Forms
 
         private void BtnComprar_Click(object sender, EventArgs e)
         {
+            int preciototal = 0;
             int x = DGVListSuper.RowCount;
             for (int i = 0; i < x; i++)
             {
@@ -64,9 +65,15 @@ namespace Forms
                     int id = int.Parse(DGVListSuper.Rows[i].Cells[1].Value.ToString());
                     int cant = int.Parse(DGVListSuper.Rows[i].Cells[5].Value.ToString());
                     despensa.compra_realizada(id, cant);
+                    int precio = int.Parse(DGVListSuper.Rows[i].Cells[6].Value.ToString());
+                    preciototal+=precio;
                 }
             }
-            ActualizarGrilla();
+            DialogResult result = MessageBox.Show($"Precio total compra: ${preciototal}", "Confirmar compra", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                ActualizarGrilla();
+            }
 
         }
 

@@ -44,6 +44,7 @@
             this.BtnModificar = new System.Windows.Forms.Button();
             this.Txtid = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_ingredientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -196,11 +197,21 @@
             this.label4.Text = "Aclaración: a la hora de modificar se deben cargar los ingredientes y sus respect" +
     "ivas cantidades nuevamente";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(542, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(114, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "*Ingresar solo numeros";
+            // 
             // FormModRecetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Txtid);
             this.Controls.Add(this.BtnModificar);
@@ -241,5 +252,6 @@
         private System.Windows.Forms.Button BtnModificar;
         private System.Windows.Forms.TextBox Txtid;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

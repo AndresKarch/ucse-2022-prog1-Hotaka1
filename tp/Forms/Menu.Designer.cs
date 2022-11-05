@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.despensaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,48 +44,40 @@
             this.comidasToolStripMenuItem,
             this.recetasToolStripMenuItem,
             this.listaSuperToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 9;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // despensaToolStripMenuItem
             // 
             this.despensaToolStripMenuItem.Name = "despensaToolStripMenuItem";
-            this.despensaToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.despensaToolStripMenuItem.Text = "Despensa";
+            resources.ApplyResources(this.despensaToolStripMenuItem, "despensaToolStripMenuItem");
             this.despensaToolStripMenuItem.Click += new System.EventHandler(this.despensaToolStripMenuItem_Click);
             // 
             // comidasToolStripMenuItem
             // 
             this.comidasToolStripMenuItem.Name = "comidasToolStripMenuItem";
-            this.comidasToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.comidasToolStripMenuItem.Text = "Comidas";
+            resources.ApplyResources(this.comidasToolStripMenuItem, "comidasToolStripMenuItem");
             this.comidasToolStripMenuItem.Click += new System.EventHandler(this.comidasToolStripMenuItem_Click);
             // 
             // recetasToolStripMenuItem
             // 
             this.recetasToolStripMenuItem.Name = "recetasToolStripMenuItem";
-            this.recetasToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.recetasToolStripMenuItem.Text = "Recetas";
+            resources.ApplyResources(this.recetasToolStripMenuItem, "recetasToolStripMenuItem");
             this.recetasToolStripMenuItem.Click += new System.EventHandler(this.recetasToolStripMenuItem_Click);
             // 
             // listaSuperToolStripMenuItem
             // 
             this.listaSuperToolStripMenuItem.Name = "listaSuperToolStripMenuItem";
-            this.listaSuperToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-            this.listaSuperToolStripMenuItem.Text = "Lista Super";
+            resources.ApplyResources(this.listaSuperToolStripMenuItem, "listaSuperToolStripMenuItem");
             this.listaSuperToolStripMenuItem.Click += new System.EventHandler(this.listaSuperToolStripMenuItem_Click);
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Menu";
-            this.Text = "Menu Principal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Menu_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

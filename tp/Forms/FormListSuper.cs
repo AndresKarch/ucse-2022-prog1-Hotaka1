@@ -17,6 +17,7 @@ namespace Forms
         Archivo Arch = new Archivo();
         Comida comidas = new Comida();
         Despensa despensa = new Despensa();
+        Filtros filtros = new Filtros();
         public FormListSuper()
         {
             InitializeComponent();
@@ -67,6 +68,69 @@ namespace Forms
             }
             ActualizarGrilla();
 
+        }
+
+        private void BTNFiltNombre_Click(object sender, EventArgs e)
+        {
+            DGVListSuper.DataSource = null;
+            DGVListSuper.RowCount = 1;
+            List<Ingrediente> datosfiltr = new List<Ingrediente>();
+            datosfiltr =filtros.filtrar_super_nombre(TxtNombre.Text);
+            foreach (Ingrediente ingrediente in datosfiltr)
+            {
+                int preciototal = ingrediente.producto.Precio * ingrediente.cantidad;
+                DGVListSuper.Rows.Add(false, ingrediente.producto.id, ingrediente.producto.Nombre, ingrediente.producto.Precio, ingrediente.producto.Tipo, ingrediente.cantidad, preciototal);
+            }
+        }
+
+        private void BTNFiltTipo_Click(object sender, EventArgs e)
+        {
+            DGVListSuper.DataSource = null;
+            DGVListSuper.RowCount = 1;
+            List<Ingrediente> datosfiltr = new List<Ingrediente>();
+            datosfiltr = filtros.filtros_super_tipo(CMBTipos.Text);
+            foreach (Ingrediente ingrediente in datosfiltr)
+            {
+                int preciototal = ingrediente.producto.Precio * ingrediente.cantidad;
+                DGVListSuper.Rows.Add(false, ingrediente.producto.id, ingrediente.producto.Nombre, ingrediente.producto.Precio, ingrediente.producto.Tipo, ingrediente.cantidad, preciototal);
+            }
+        }
+
+        private void BTNFiltCant_Click(object sender, EventArgs e)
+        {
+            DGVListSuper.DataSource = null;
+            DGVListSuper.RowCount = 1;
+            List<Ingrediente> datosfiltr = new List<Ingrediente>();
+            datosfiltr = filtros.filtros_super_cantidad(TxtMenor.Text,TxtMayor.Text);
+            foreach (Ingrediente ingrediente in datosfiltr)
+            {
+                int preciototal = ingrediente.producto.Precio * ingrediente.cantidad;
+                DGVListSuper.Rows.Add(false, ingrediente.producto.id, ingrediente.producto.Nombre, ingrediente.producto.Precio, ingrediente.producto.Tipo, ingrediente.cantidad, preciototal);
+            }
+        }
+
+        private void BTNFiltPrecios_Click(object sender, EventArgs e)
+        {
+            DGVListSuper.DataSource = null;
+            DGVListSuper.RowCount = 1;
+            List<Ingrediente> datosfiltr = new List<Ingrediente>();
+            datosfiltr = filtros.filtros_super_precio(TxtPrecioMenor.Text,TxtPrecioMayor.Text);
+            foreach (Ingrediente ingrediente in datosfiltr)
+            {
+                int preciototal = ingrediente.producto.Precio * ingrediente.cantidad;
+                DGVListSuper.Rows.Add(false, ingrediente.producto.id, ingrediente.producto.Nombre, ingrediente.producto.Precio, ingrediente.producto.Tipo, ingrediente.cantidad, preciototal);
+            }
+        }
+
+        private void BTNLimpiar_Click(object sender, EventArgs e)
+        {
+            TxtMayor.Text = null;
+            TxtPrecioMayor.Text = null;
+            TxtMenor.Text = null;
+            TxtNombre.Text = null;
+            TxtPrecioMenor.Text = null;
+
+            ActualizarGrilla();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Forms
     {
         Comida comidas = new Comida();
         Archivo archivo = new Archivo();
+        Administrador_recetas admrecetas = new Administrador_recetas();
         public FormPrepararComidas()
         {
             InitializeComponent();
@@ -56,7 +57,7 @@ namespace Forms
                 int JsonCambiar =8;
                 archivo.Validacion_terminada(JsonCambiar);
             }
-            IVolver padre = this.Owner as IVolver;
+            Ivolvercomidas padre = this.Owner as Ivolvercomidas;
             if (padre != null)
             {
                 padre.Cargargrilla();
@@ -69,7 +70,7 @@ namespace Forms
      
         private void BTNVolver_Click(object sender, EventArgs e)
         {
-            IVolver padre = this.Owner as IVolver;
+            Ivolvercomidas padre = this.Owner as Ivolvercomidas;
             if (padre != null)
             {
                 padre.Cargargrilla();
@@ -80,7 +81,26 @@ namespace Forms
         private void ActualizarGrilla()
         {
             DGVComidas.DataSource = null;
-            DGVComidas.DataSource = comidas.Comidas_ok();
+            DGVComidas.RowCount = 1;
+            List<Receta> recetas = new List<Receta>();
+            recetas = comidas.Comidas_ok();
+            string ListProdfinal = "";
+            foreach (Receta receta_mostrar in recetas)
+            {
+                ListProdfinal = "";
+                List<string> ingredientestring = new List<string>();
+                List<Ingrediente> ingredientes = new List<Ingrediente>();
+                ingredientes = receta_mostrar.ingredientes;
+                foreach (Ingrediente ingrediente in ingredientes)
+                {
+                    string ingr = $"-{ingrediente.producto.Nombre},{ingrediente.cantidad}-";
+                    ListProdfinal = ListProdfinal + ingr;
+                }
+                DGVComidas.Rows.Add("Preparar",receta_mostrar.id, receta_mostrar.nombre, receta_mostrar.tipo_receta, receta_mostrar.tipo_comida, ListProdfinal);
+
+            }
+            //DGVComidas.DataSource = null;
+            //DGVComidas.DataSource = comidas.Comidas_ok(); 
         }
 
     }

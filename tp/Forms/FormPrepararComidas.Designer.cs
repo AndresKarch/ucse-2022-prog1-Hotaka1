@@ -30,13 +30,13 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.DGVComidas = new System.Windows.Forms.DataGridView();
-            this.BTNVolver = new System.Windows.Forms.Button();
             this.Preparar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoReceta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoComida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ingredientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BTNVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVComidas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,16 +65,6 @@
             this.DGVComidas.Size = new System.Drawing.Size(776, 293);
             this.DGVComidas.TabIndex = 4;
             this.DGVComidas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVDespensa_CellContentClick);
-            // 
-            // BTNVolver
-            // 
-            this.BTNVolver.Location = new System.Drawing.Point(12, 415);
-            this.BTNVolver.Name = "BTNVolver";
-            this.BTNVolver.Size = new System.Drawing.Size(75, 23);
-            this.BTNVolver.TabIndex = 19;
-            this.BTNVolver.Text = "Volver";
-            this.BTNVolver.UseVisualStyleBackColor = true;
-            this.BTNVolver.Click += new System.EventHandler(this.BTNVolver_Click);
             // 
             // Preparar
             // 
@@ -111,6 +101,16 @@
             this.Ingredientes.HeaderText = "Ingredientes";
             this.Ingredientes.Name = "Ingredientes";
             // 
+            // BTNVolver
+            // 
+            this.BTNVolver.Location = new System.Drawing.Point(12, 415);
+            this.BTNVolver.Name = "BTNVolver";
+            this.BTNVolver.Size = new System.Drawing.Size(75, 23);
+            this.BTNVolver.TabIndex = 19;
+            this.BTNVolver.Text = "Volver";
+            this.BTNVolver.UseVisualStyleBackColor = true;
+            this.BTNVolver.Click += new System.EventHandler(this.BTNVolver_Click);
+            // 
             // FormPrepararComidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,6 +121,7 @@
             this.Controls.Add(this.DGVComidas);
             this.Name = "FormPrepararComidas";
             this.Text = "Comidas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormComidas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVComidas)).EndInit();
             this.ResumeLayout(false);

@@ -109,8 +109,7 @@ namespace Forms
         private bool Validaciondatos()
         {
             if (TxtNombre.Text == ""  ||  TxtPrecio.Text == "" || TxtCant.Text == "" || TxtCantMinima.Text == "" ||  CMBTipo.Text == "")
-            {
-                this.Close();
+            {                
                 DialogResult resultado =MessageBox.Show("Todos los cuadros de texto deben estar completos", "Faltan datos", MessageBoxButtons.OK);
                 if (resultado == DialogResult.OK)
                 {
@@ -127,8 +126,13 @@ namespace Forms
         {
             if (TxtNombre.Text == "" || TxtPrecio.Text == "" || TxtCant.Text == "" || TxtCantMinima.Text == "" || CMBTipo.Text == ""||CMBTipoBebida.Text == "")
             {
-                MessageBox.Show("Todos los cuadros de texto deben estar completos", "Faltan datos", MessageBoxButtons.OKCancel);
-                return false;
+                DialogResult resultado= MessageBox.Show("Todos los cuadros de texto deben estar completos", "Faltan datos", MessageBoxButtons.OKCancel);
+                if (resultado == DialogResult.OK)
+                {
+                    FormModDespensa Form = new FormModDespensa();
+                    Form.ShowDialog();
+                    return false;
+                }
             }
             return true;
         }
@@ -197,38 +201,52 @@ namespace Forms
             int tipo_comprobacion = despensa.comprobarTipo(CMBTipo.Text);
             if (tipo_comprobacion == 0)
             {
-                Kilo_litro kilolitro = new Kilo_litro();
-                kilolitro.id = int.Parse(Txt_Id.Text);
-                kilolitro.Nombre = TxtNombre.Text;
-                kilolitro.Precio = int.Parse(TxtPrecio.Text);
-                kilolitro.Tipo = CMBTipo.Text;
-                kilolitro.cantidad = decimal.Parse(TxtCant.Text);
-                kilolitro.CantMinima = decimal.Parse(TxtCantMinima.Text);
-                despensa.Modificarproducto(kilolitro);
+                
+                if (Validaciondatos() == true)
+                {
+                    Kilo_litro kilolitro = new Kilo_litro();
+                    kilolitro.id = int.Parse(Txt_Id.Text);
+                    kilolitro.Nombre = TxtNombre.Text;
+                    kilolitro.Precio = int.Parse(TxtPrecio.Text);
+                    kilolitro.Tipo = CMBTipo.Text;
+                    kilolitro.cantidad = decimal.Parse(TxtCant.Text);
+                    kilolitro.CantMinima = decimal.Parse(TxtCantMinima.Text);
+                    despensa.Modificarproducto(kilolitro);
+                }                
             }
             else if (tipo_comprobacion == 2)
             {
-                Bebida bebida = new Bebida();
-                bebida.id = int.Parse(Txt_Id.Text);
-                bebida.Nombre = TxtNombre.Text;
-                bebida.Tipo = CMBTipo.Text;
-                bebida.Precio = int.Parse(TxtPrecio.Text);
-                bebida.cantidad = int.Parse(TxtCant.Text);
-                bebida.CantMinima = int.Parse(TxtCantMinima.Text);
-                bebida.tipobebida = CMBTipoBebida.Text;
-                despensa.Modificarproducto(bebida);
+                
+                if (ValidaciondatosBebidas() == true)
+                {
+                    Bebida bebida = new Bebida();
+                    bebida.id = int.Parse(Txt_Id.Text);
+                    bebida.Nombre = TxtNombre.Text;
+                    bebida.Tipo = CMBTipo.Text;
+                    bebida.Precio = int.Parse(TxtPrecio.Text);
+                    bebida.cantidad = int.Parse(TxtCant.Text);
+                    bebida.CantMinima = int.Parse(TxtCantMinima.Text);
+                    bebida.tipobebida = CMBTipoBebida.Text;
+                    despensa.Modificarproducto(bebida);
+                }
+                
             }
             else if (tipo_comprobacion == 1)
             {
-                Cantidad cantidad = new Cantidad();
-                cantidad.id = int.Parse(Txt_Id.Text);
-                cantidad.Nombre = TxtNombre.Text;
-                cantidad.Tipo = CMBTipo.Text;
-                cantidad.Precio = int.Parse(TxtPrecio.Text);
-                cantidad.cantidad = int.Parse(TxtCant.Text);
-                cantidad.CantMinima = int.Parse(TxtCantMinima.Text);
-                despensa.Modificarproducto(cantidad);
+                if (Validaciondatos() == true)
+                {
+                    Cantidad cantidad = new Cantidad();
+                    cantidad.id = int.Parse(Txt_Id.Text);
+                    cantidad.Nombre = TxtNombre.Text;
+                    cantidad.Tipo = CMBTipo.Text;
+                    cantidad.Precio = int.Parse(TxtPrecio.Text);
+                    cantidad.cantidad = int.Parse(TxtCant.Text);
+                    cantidad.CantMinima = int.Parse(TxtCantMinima.Text);
+                    despensa.Modificarproducto(cantidad);
+                }                
             }
+
+
             IVolver padre = this.Owner as IVolver;
             if (padre != null)
             {

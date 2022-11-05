@@ -177,7 +177,7 @@ namespace Logica
 
         }
 
-        public void compra_realizada(int id, int cantidad_id)
+        /*public void compra_realizada(int id, int cantidad_id)
         {
             int x = 0;
             List<Producto> despensa = new List<Producto>();
@@ -226,6 +226,70 @@ namespace Logica
                     }
                 }
                 
+            }
+            archivos.Cargar(despensa_final);
+        }*/
+
+        public void compra_realizada(int id, int cantidad_id)
+        {
+            int x = 0;
+            List<Producto> despensa = new List<Producto>();
+            List<Producto> despensa_final = new List<Producto>();
+            despensa = archivos.Buscar();
+            foreach (Producto producto in despensa)
+            {
+                int tipo = comprobarTipo(producto.Tipo);
+                if (tipo == 0)
+                {
+                    Kilo_litro kilo_Litro = (Kilo_litro)producto;
+                    if (kilo_Litro.id == id)
+                    {
+                        if (kilo_Litro.cantidad < kilo_Litro.CantMinima)
+                        {
+                            kilo_Litro.cantidad += cantidad_id;
+                            despensa_final.Add(kilo_Litro);
+                        }
+                    }
+                    else
+                    {
+                        despensa_final.Add(producto);
+                    }
+
+                }
+                else if (tipo == 1)
+                {
+                    Cantidad cantidad = (Cantidad)producto;
+                    if (producto.id == id)
+                    {
+                        if (cantidad.cantidad < cantidad.CantMinima)
+                        {
+                            cantidad.cantidad += cantidad_id;
+                            despensa_final.Add(cantidad);
+                        }
+                    }
+                    else
+                    {
+                        despensa_final.Add(producto);
+                    }
+
+                }
+                else if (tipo == 2)
+                {
+                    Bebida bebida = (Bebida)producto;
+                    if (producto.id == id)
+                    {
+                        if (bebida.cantidad < bebida.CantMinima)
+                        {
+                            bebida.cantidad += cantidad_id;
+                            despensa_final.Add(bebida);
+                        }
+                    }
+                    else
+                    {
+                        despensa_final.Add(producto);
+                    }
+                }
+
             }
             archivos.Cargar(despensa_final);
         }

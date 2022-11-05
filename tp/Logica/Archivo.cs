@@ -46,15 +46,15 @@ namespace Logica
         }
         List<string> direcciones = new List<string>()
         {
-            @"C:\Carpeta_json\Bebidas.json",
-            @"C:\Carpeta_json\cantidad.json",
-            @"C:\Carpeta_json\Kilo_litro.json",
-            @"C:\Carpeta_json\Recetas.json",
-            @"C:\Carpeta_json\Historial.json",
-            @"C:\Carpeta_json\listasuper.json",
-            @"C:\Carpeta_json\validar.json",
-            @"C:\Carpeta_json\validarrecetas.json",
-            @"C:\Carpeta_json\validarcomidas.json"
+            @"C:\Carpeta_json\Bebidas.json",//0
+            @"C:\Carpeta_json\cantidad.json",//1
+            @"C:\Carpeta_json\Kilo_litro.json",//2
+            @"C:\Carpeta_json\Recetas.json",//3
+            @"C:\Carpeta_json\Historial.json",//4
+            @"C:\Carpeta_json\listasuper.json",//5
+            @"C:\Carpeta_json\validar.json",//6
+            @"C:\Carpeta_json\validarrecetas.json",//7
+            @"C:\Carpeta_json\validarcomidas.json"//8
         };
 
         public void Crear_carpeta()
@@ -97,63 +97,6 @@ namespace Logica
             string info_base = "false";
             File.WriteAllText(direcciones[Json], info_base);
         }
-
-        /*public string Validacion()
-        {
-            StreamReader v = new StreamReader(direcciones[6]);
-            string jsonString = v.ReadToEnd();
-            var validacion = JsonConvert.DeserializeObject<string>(jsonString);
-            v.Close();
-            return validacion;
-        }*/
-
-        //Recetas
-        /*public string ValidacionR()
-        {
-            StreamReader v = new StreamReader(direcciones[3]);
-            string jsonString = v.ReadToEnd();
-            var validacion = JsonConvert.DeserializeObject<string>(jsonString);
-            v.Close();
-            return validacion;
-        }
-
-        /*public void Validacion_terminadaR()
-        {
-            string info_base = "false";
-            File.WriteAllText(direcciones[3], info_base);
-        }
-
-        //Historial
-        public string ValidacionH()
-        {
-            StreamReader v = new StreamReader(direcciones[4]);
-            string jsonString = v.ReadToEnd();
-            var validacion = JsonConvert.DeserializeObject<string>(jsonString);
-            v.Close();
-            return validacion;
-        }
-
-        public void Validacion_terminadaH()
-        {
-            string info_base = "false";
-            File.WriteAllText(direcciones[4], info_base);
-        }
-
-        //listasuper
-        public string ValidacionS()
-        {
-            StreamReader v = new StreamReader(direcciones[5]);
-            string jsonString = v.ReadToEnd();
-            var validacion = JsonConvert.DeserializeObject<string>(jsonString);
-            v.Close();
-            return validacion;
-        }
-
-        public void Validacion_terminadaS()
-        {
-            string info_base = "false";
-            File.WriteAllText(direcciones[5], info_base);
-        }*/
 
 
 
@@ -254,23 +197,23 @@ namespace Logica
             File.WriteAllText(direcciones[3], R);
         }
 
-        public void GuardarHistorial_Recetas(List<Receta> historial_Res)
+        public void GuardarHistorial_Recetas(List<Receta_archivos> historial_Res)
         {
             string R = JsonConvert.SerializeObject(historial_Res, Formatting.Indented);
-            File.WriteAllText(direcciones[5], R);
+            File.WriteAllText(direcciones[4], R);
         }
 
-        public List<Receta> BuscarHistorial_Recetas()
+        public List<Receta_archivos> BuscarHistorial_Recetas()
         {
-            List<Receta> Recetas_Historial = new List<Receta>();
-            StreamReader r = new StreamReader(direcciones[5]);
+            List<Receta_archivos> Recetas_Historial = new List<Receta_archivos>();
+            StreamReader r = new StreamReader(direcciones[4]);
             string jsonString = r.ReadToEnd();
             r.Close();
             if (jsonString == "true")
                 return Recetas_Historial;
             else
             {
-                var Historial = JsonConvert.DeserializeObject<List<Receta>>(jsonString);
+                var Historial = JsonConvert.DeserializeObject<List<Receta_archivos>>(jsonString);
                 return Historial;
             }         
         }

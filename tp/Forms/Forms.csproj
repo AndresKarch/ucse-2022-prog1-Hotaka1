@@ -63,6 +63,7 @@
       <DependentUpon>FormComida.cs</DependentUpon>
     </Compile>
     <Compile Include="IVolver.cs" />
+    <Compile Include="Ivolvercomidas.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>

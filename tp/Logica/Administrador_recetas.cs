@@ -116,6 +116,7 @@ namespace Logica
 
         public List<Receta> Eliminarreceta(Receta producto_eliminar)
         {
+            int id = 0;
             List<Receta> recetas = new List<Receta>();
             recetas = obtener_recetas();
             List<Receta> recetas_no_eliminadas = new List<Receta>();
@@ -127,7 +128,9 @@ namespace Logica
                 }
                 else
                 {
+                    receta.id = id;
                     recetas_no_eliminadas.Add(receta);
+                    id++;
                 }
             }
             List<Receta_archivos> recetas_a = guardar_receta(recetas_no_eliminadas);
@@ -147,6 +150,68 @@ namespace Logica
                 }
             }
             return ingredientes;
+        }
+
+        public List<Receta> obtener_historial_recetas()
+        {
+            List<Producto> ingredientes = new List<Producto>();
+            ingredientes = Archivos2.Buscar();
+            List<Receta> recetas = new List<Receta>();
+            List<Receta_archivos> recetas_archivos = new List<Receta_archivos>();
+            recetas_archivos = Archivos2.BuscarHistorial_Recetas();
+            foreach (Receta_archivos receta_a in recetas_archivos)
+            {
+                Receta receta = new Receta();
+                receta.id = receta_a.id;
+                receta.nombre = receta_a.nombre;
+                receta.tipo_receta = receta_a.tipo_receta;
+                receta.tipo_comida = receta_a.tipo_comida;
+                List<Ingrediente> ingredientes_lista = new List<Ingrediente>();
+                foreach (Ingrediente_receta_archivo codigo in receta_a.codigos)
+                {
+                    foreach (Producto ingrediente in ingredientes)
+                    {
+                        if (ingrediente.id == codigo.id_producto)
+                        {
+                            Ingrediente nuevo_ingrediente = new Ingrediente();
+                            nuevo_ingrediente.producto = ingrediente;
+                            nuevo_ingrediente.cantidad = codigo.cantidad_producto;
+                            ingredientes_lista.Add(nuevo_ingrediente);
+                            break;
+                        }
+                    }
+
+                }
+                receta.ingredientes = ingredientes_lista;
+                recetas.Add(receta);
+            }
+            return recetas;
+        }
+
+        public List<Receta_archivos> guardar_historial_receta(List<Receta> recetas)
+        {
+            List<Receta_archivos> recetas_codigos = new List<Receta_archivos>();
+            foreach (Receta receta in recetas)
+            {
+                List<Ingrediente_receta_archivo> ingredientes_archivos = new List<Ingrediente_receta_archivo>();
+                Receta_archivos nueva_receta_archivos = new Receta_archivos();
+                nueva_receta_archivos.id = receta.id;
+                nueva_receta_archivos.nombre = receta.nombre;
+                nueva_receta_archivos.tipo_receta = receta.tipo_receta;
+                nueva_receta_archivos.tipo_comida = receta.tipo_comida;
+                foreach (Ingrediente ingrediente_producto in receta.ingredientes)
+                {
+                    Ingrediente_receta_archivo ingrediente_codigo = new Ingrediente_receta_archivo();
+                    ingrediente_codigo.cantidad_producto = ingrediente_producto.cantidad;
+                    ingrediente_codigo.id_producto = ingrediente_producto.producto.id;
+                    ingredientes_archivos.Add(ingrediente_codigo);
+                    //nueva_receta_archivos.codigos.Add(ingrediente_codigo);
+                }
+                nueva_receta_archivos.codigos = ingredientes_archivos;
+                recetas_codigos.Add(nueva_receta_archivos);
+            }
+            Archivos2.GuardarHistorial_Recetas(recetas_codigos);
+            return recetas_codigos;
         }
     }
 }

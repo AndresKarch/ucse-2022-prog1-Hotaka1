@@ -176,11 +176,12 @@
             // 
             // Txtid
             // 
-            this.Txtid.Location = new System.Drawing.Point(12, 242);
+            this.Txtid.Location = new System.Drawing.Point(195, 402);
             this.Txtid.Name = "Txtid";
             this.Txtid.Size = new System.Drawing.Size(100, 20);
             this.Txtid.TabIndex = 12;
             this.Txtid.Visible = false;
+            this.Txtid.TextChanged += new System.EventHandler(this.Txtid_TextChanged);
             // 
             // FormModRecetas
             // 
@@ -200,6 +201,7 @@
             this.Controls.Add(this.BTNVolver);
             this.Name = "FormModRecetas";
             this.Text = "Agregar Recetas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormModRecetas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_ingredientes)).EndInit();
             this.ResumeLayout(false);

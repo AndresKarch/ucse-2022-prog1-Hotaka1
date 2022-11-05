@@ -32,8 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnNuevoElemento = new System.Windows.Forms.Button();
             this.DGVDespensa = new System.Windows.Forms.DataGridView();
-            this.BTNVolver = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +41,8 @@
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BTNVolver = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVDespensa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,21 +83,6 @@
             this.DGVDespensa.Size = new System.Drawing.Size(950, 293);
             this.DGVDespensa.TabIndex = 5;
             this.DGVDespensa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVDespensa_CellContentClick);
-            // 
-            // BTNVolver
-            // 
-            this.BTNVolver.Location = new System.Drawing.Point(12, 421);
-            this.BTNVolver.Name = "BTNVolver";
-            this.BTNVolver.Size = new System.Drawing.Size(75, 23);
-            this.BTNVolver.TabIndex = 19;
-            this.BTNVolver.Text = "Volver";
-            this.BTNVolver.UseVisualStyleBackColor = true;
-            this.BTNVolver.Click += new System.EventHandler(this.BTNVolver_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Nombre
             // 
@@ -160,6 +145,21 @@
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
             // 
+            // BTNVolver
+            // 
+            this.BTNVolver.Location = new System.Drawing.Point(12, 421);
+            this.BTNVolver.Name = "BTNVolver";
+            this.BTNVolver.Size = new System.Drawing.Size(75, 23);
+            this.BTNVolver.TabIndex = 19;
+            this.BTNVolver.Text = "Volver";
+            this.BTNVolver.UseVisualStyleBackColor = true;
+            this.BTNVolver.Click += new System.EventHandler(this.BTNVolver_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // FormDespensa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,6 +171,7 @@
             this.Controls.Add(this.DGVDespensa);
             this.Name = "FormDespensa";
             this.Text = "Despensa";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormDespensa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVDespensa)).EndInit();
             this.ResumeLayout(false);

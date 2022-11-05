@@ -208,7 +208,7 @@
             // 
             // BTNModificar
             // 
-            this.BTNModificar.Location = new System.Drawing.Point(118, 168);
+            this.BTNModificar.Location = new System.Drawing.Point(121, 168);
             this.BTNModificar.Name = "BTNModificar";
             this.BTNModificar.Size = new System.Drawing.Size(75, 23);
             this.BTNModificar.TabIndex = 19;
@@ -251,6 +251,7 @@
             this.Controls.Add(this.BtnGuardar);
             this.Name = "FormModDespensa";
             this.Text = "Despensa Modificacion/Nuevos";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormModDespensa_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -92,56 +92,10 @@ namespace Logica
             }
             historial_comidas.Add(comida_preparar);
             // metodo de guardar historial
-            List<Receta> historial_recetas = archivos.BuscarHistorial_Recetas();
+            List<Receta> historial_recetas = admin_recetas.obtener_historial_recetas();
             historial_recetas.Add(comida_preparar);
-            archivos.GuardarHistorial_Recetas(historial_recetas);
+            admin_recetas.guardar_historial_receta(historial_recetas);
 
-            List<Ingrediente> listasuper = archivos.Buscarlistasuper();
-            Ingrediente producto_super = new Ingrediente();
-            foreach (Ingrediente ingrediente in comida_preparar.ingredientes)
-            {
-                foreach (Producto producto in despensa)
-                {
-                    if (ingrediente.producto.id == producto.id)
-                    {
-                        if (producto is Bebida)
-                        {
-                            Bebida bebida_selec = (Bebida)producto;
-                            bebida_selec.cantidad = bebida_selec.cantidad - ingrediente.cantidad;
-                            if (bebida_selec.cantidad<bebida_selec.CantMinima)
-                            {
-                                producto_super.producto = ingrediente.producto;
-                                producto_super.cantidad = bebida_selec.CantMinima;
-                            }
-                            break;
-                        }
-                        else if (producto is Cantidad)
-                        {
-                            Cantidad cantidad_selec = (Cantidad)producto;
-                            cantidad_selec.cantidad = cantidad_selec.cantidad - ingrediente.cantidad;
-                            if (cantidad_selec.cantidad < cantidad_selec.CantMinima)
-                            {
-                                producto_super.producto = ingrediente.producto;
-                                producto_super.cantidad = cantidad_selec.CantMinima;
-                            }
-                            break;
-                        }
-                        else if (producto is Kilo_litro)
-                        {
-                            Kilo_litro kilolitro_selec = (Kilo_litro)producto;
-                            kilolitro_selec.cantidad = kilolitro_selec.cantidad - ingrediente.cantidad;
-                            if (kilolitro_selec.cantidad < kilolitro_selec.CantMinima)
-                            {
-                                producto_super.producto = ingrediente.producto;
-                                producto_super.cantidad = decimal.ToInt32(Math.Ceiling(kilolitro_selec.CantMinima));
-                            }
-                            break;
-                        }
-                    }
-                }
-            }
-            archivos.Guardarlistasuper(listasuper);
-            archivos.Cargar(despensa);
         }
 
         public List<Ingrediente> lista_super_obtener()

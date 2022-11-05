@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.DGVRecetas = new System.Windows.Forms.DataGridView();
-            this.BtnNuevoElemento = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.BTNVolver = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -39,6 +36,9 @@
             this.TipoReceta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoComida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ingredientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnNuevoElemento = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BTNVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGVRecetas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,35 +58,6 @@
             this.DGVRecetas.Size = new System.Drawing.Size(776, 293);
             this.DGVRecetas.TabIndex = 0;
             this.DGVRecetas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVDespensa_CellContentClick);
-            // 
-            // BtnNuevoElemento
-            // 
-            this.BtnNuevoElemento.Location = new System.Drawing.Point(12, 357);
-            this.BtnNuevoElemento.Name = "BtnNuevoElemento";
-            this.BtnNuevoElemento.Size = new System.Drawing.Size(110, 23);
-            this.BtnNuevoElemento.TabIndex = 1;
-            this.BtnNuevoElemento.Text = "Nuevo Elemento";
-            this.BtnNuevoElemento.UseVisualStyleBackColor = true;
-            this.BtnNuevoElemento.Click += new System.EventHandler(this.BtnNuevoElemento_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Lista Recetas";
-            // 
-            // BTNVolver
-            // 
-            this.BTNVolver.Location = new System.Drawing.Point(12, 415);
-            this.BTNVolver.Name = "BTNVolver";
-            this.BTNVolver.Size = new System.Drawing.Size(75, 23);
-            this.BTNVolver.TabIndex = 19;
-            this.BTNVolver.Text = "Volver";
-            this.BTNVolver.UseVisualStyleBackColor = true;
-            this.BTNVolver.Click += new System.EventHandler(this.BTNVolver_Click);
             // 
             // Id
             // 
@@ -132,6 +103,35 @@
             this.Ingredientes.Name = "Ingredientes";
             this.Ingredientes.Width = 90;
             // 
+            // BtnNuevoElemento
+            // 
+            this.BtnNuevoElemento.Location = new System.Drawing.Point(12, 357);
+            this.BtnNuevoElemento.Name = "BtnNuevoElemento";
+            this.BtnNuevoElemento.Size = new System.Drawing.Size(110, 23);
+            this.BtnNuevoElemento.TabIndex = 1;
+            this.BtnNuevoElemento.Text = "Nuevo Elemento";
+            this.BtnNuevoElemento.UseVisualStyleBackColor = true;
+            this.BtnNuevoElemento.Click += new System.EventHandler(this.BtnNuevoElemento_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Lista Recetas";
+            // 
+            // BTNVolver
+            // 
+            this.BTNVolver.Location = new System.Drawing.Point(12, 415);
+            this.BTNVolver.Name = "BTNVolver";
+            this.BTNVolver.Size = new System.Drawing.Size(75, 23);
+            this.BTNVolver.TabIndex = 19;
+            this.BTNVolver.Text = "Volver";
+            this.BTNVolver.UseVisualStyleBackColor = true;
+            this.BTNVolver.Click += new System.EventHandler(this.BTNVolver_Click);
+            // 
             // FormRecetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -143,6 +143,7 @@
             this.Controls.Add(this.DGVRecetas);
             this.Name = "FormRecetas";
             this.Text = "Recetas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormRecetas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVRecetas)).EndInit();
             this.ResumeLayout(false);

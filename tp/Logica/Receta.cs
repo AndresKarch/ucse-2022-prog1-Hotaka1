@@ -11,7 +11,6 @@ namespace Logica
     {
         public int id  { get; set; }
         public string nombre { get; set; }
-        [JsonIgnore]
         public List<Ingrediente> ingredientes { get; set; }
         public string tipo_receta { get; set; }
         public string tipo_comida { get; set; }

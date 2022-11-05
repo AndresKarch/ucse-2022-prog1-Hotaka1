@@ -14,7 +14,5 @@ namespace Logica
         public List<Ingrediente> ingredientes { get; set; }
         public string tipo_receta { get; set; }
         public string tipo_comida { get; set; }
-
-        //Agregar lista que diga cuanto gasta la receta
     }
 }

@@ -103,9 +103,6 @@ namespace Logica
             return ingredientes;
         }
 
-
-
-
         public List<Receta> filtros_comidas_tipo_comida(string filtro)
         {
             List<Receta> comidas = new List<Receta>();

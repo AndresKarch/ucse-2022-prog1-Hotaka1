@@ -40,7 +40,6 @@
             this.TxtCantMinima = new System.Windows.Forms.TextBox();
             this.CMBTipo = new System.Windows.Forms.ComboBox();
             this.LBLKilos = new System.Windows.Forms.Label();
-            this.LBLLitros = new System.Windows.Forms.Label();
             this.CMBTipoBebida = new System.Windows.Forms.ComboBox();
             this.LBLTipoBebida = new System.Windows.Forms.Label();
             this.BTNVolver = new System.Windows.Forms.Button();
@@ -89,6 +88,7 @@
             this.TxtPrecio.Name = "TxtPrecio";
             this.TxtPrecio.Size = new System.Drawing.Size(100, 20);
             this.TxtPrecio.TabIndex = 3;
+            this.TxtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecio_KeyPress);
             // 
             // label3
             // 
@@ -116,6 +116,7 @@
             this.TxtCant.Size = new System.Drawing.Size(100, 20);
             this.TxtCant.TabIndex = 7;
             this.TxtCant.Visible = false;
+            this.TxtCant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCant_KeyPress);
             // 
             // LBLCantMin
             // 
@@ -134,6 +135,7 @@
             this.TxtCantMinima.Size = new System.Drawing.Size(100, 20);
             this.TxtCantMinima.TabIndex = 9;
             this.TxtCantMinima.Visible = false;
+            this.TxtCantMinima.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCantMinima_KeyPress);
             // 
             // CMBTipo
             // 
@@ -152,26 +154,17 @@
             this.CMBTipo.Size = new System.Drawing.Size(121, 21);
             this.CMBTipo.TabIndex = 13;
             this.CMBTipo.SelectedIndexChanged += new System.EventHandler(this.CMBTipo_SelectedIndexChanged);
+            this.CMBTipo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CMBTipo_KeyPress);
             // 
             // LBLKilos
             // 
             this.LBLKilos.AutoSize = true;
             this.LBLKilos.Location = new System.Drawing.Point(12, 67);
             this.LBLKilos.Name = "LBLKilos";
-            this.LBLKilos.Size = new System.Drawing.Size(88, 13);
+            this.LBLKilos.Size = new System.Drawing.Size(118, 13);
             this.LBLKilos.TabIndex = 14;
-            this.LBLKilos.Text = "cantidad en Kilos";
+            this.LBLKilos.Text = "cantidad en Kilos/Litros";
             this.LBLKilos.Visible = false;
-            // 
-            // LBLLitros
-            // 
-            this.LBLLitros.AutoSize = true;
-            this.LBLLitros.Location = new System.Drawing.Point(12, 67);
-            this.LBLLitros.Name = "LBLLitros";
-            this.LBLLitros.Size = new System.Drawing.Size(91, 13);
-            this.LBLLitros.TabIndex = 15;
-            this.LBLLitros.Text = "cantidad en Litros";
-            this.LBLLitros.Visible = false;
             // 
             // CMBTipoBebida
             // 
@@ -185,6 +178,7 @@
             this.CMBTipoBebida.Size = new System.Drawing.Size(121, 21);
             this.CMBTipoBebida.TabIndex = 16;
             this.CMBTipoBebida.Visible = false;
+            this.CMBTipoBebida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CMBTipoBebida_KeyPress);
             // 
             // LBLTipoBebida
             // 
@@ -236,7 +230,6 @@
             this.Controls.Add(this.BTNVolver);
             this.Controls.Add(this.LBLTipoBebida);
             this.Controls.Add(this.CMBTipoBebida);
-            this.Controls.Add(this.LBLLitros);
             this.Controls.Add(this.LBLKilos);
             this.Controls.Add(this.CMBTipo);
             this.Controls.Add(this.LBLCantMin);
@@ -272,7 +265,6 @@
         private System.Windows.Forms.TextBox TxtCantMinima;
         private System.Windows.Forms.ComboBox CMBTipo;
         private System.Windows.Forms.Label LBLKilos;
-        private System.Windows.Forms.Label LBLLitros;
         private System.Windows.Forms.ComboBox CMBTipoBebida;
         private System.Windows.Forms.Label LBLTipoBebida;
         private System.Windows.Forms.Button BTNVolver;

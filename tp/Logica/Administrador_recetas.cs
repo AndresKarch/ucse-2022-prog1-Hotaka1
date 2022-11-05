@@ -61,8 +61,7 @@ namespace Logica
                             ingredientes_lista.Add(nuevo_ingrediente);
                             break;
                         }
-                    }
-                    
+                    }                 
                 }
                 receta.ingredientes = ingredientes_lista;
                 recetas.Add(receta);
@@ -87,7 +86,6 @@ namespace Logica
                     ingrediente_codigo.cantidad_producto = ingrediente_producto.cantidad;
                     ingrediente_codigo.id_producto = ingrediente_producto.producto.id;
                     ingredientes_archivos.Add(ingrediente_codigo);
-                    //nueva_receta_archivos.codigos.Add(ingrediente_codigo);
                 }
                 nueva_receta_archivos.codigos = ingredientes_archivos;
                 recetas_codigos.Add(nueva_receta_archivos);
@@ -205,7 +203,6 @@ namespace Logica
                     ingrediente_codigo.cantidad_producto = ingrediente_producto.cantidad;
                     ingrediente_codigo.id_producto = ingrediente_producto.producto.id;
                     ingredientes_archivos.Add(ingrediente_codigo);
-                    //nueva_receta_archivos.codigos.Add(ingrediente_codigo);
                 }
                 nueva_receta_archivos.codigos = ingredientes_archivos;
                 recetas_codigos.Add(nueva_receta_archivos);

@@ -169,5 +169,23 @@ namespace Forms
         {
 
         }
+
+        private void CMBTipoComida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+
+            }
+            else e.Handled = true;
+        }
+
+        private void CMBReceta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+
+            }
+            else e.Handled = true;
+        }
     }
 }

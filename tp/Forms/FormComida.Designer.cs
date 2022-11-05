@@ -189,6 +189,7 @@
             this.CMBTiposComida.Name = "CMBTiposComida";
             this.CMBTiposComida.Size = new System.Drawing.Size(121, 21);
             this.CMBTiposComida.TabIndex = 37;
+            this.CMBTiposComida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CMBTiposComida_KeyPress);
             // 
             // label5
             // 
@@ -235,6 +236,7 @@
             this.CMBTIpoReceta.Name = "CMBTIpoReceta";
             this.CMBTIpoReceta.Size = new System.Drawing.Size(121, 21);
             this.CMBTIpoReceta.TabIndex = 52;
+            this.CMBTIpoReceta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CMBTIpoReceta_KeyPress);
             // 
             // Btnlimpiar
             // 

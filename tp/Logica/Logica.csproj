@@ -48,14 +48,12 @@
     <Compile Include="Archivo.cs" />
     <Compile Include="Bebida.cs" />
     <Compile Include="Cantidad.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Comida.cs" />
     <Compile Include="Despensa.cs" />
     <Compile Include="Filtros.cs" />
     <Compile Include="Ingrediente.cs" />
     <Compile Include="Ingrediente_receta_archivo.cs" />
     <Compile Include="Kilo_litro.cs" />
-    <Compile Include="Producto_super.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receta.cs" />

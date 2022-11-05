@@ -59,7 +59,6 @@ namespace Logica
 
         public void Crear_carpeta()
         {
-            //bool existe = File.Exists(@"C:\Carpeta_json");
             if ((File.Exists(@"C:\Carpeta_json\Validar.json")) == true)
             {
             }
@@ -74,8 +73,6 @@ namespace Logica
                         file.Close();
                         File.WriteAllText(direcciones[i], validacion);                      
                     }
-                    //File.WriteAllText(direcciones[6], validacion);
-                    //file.Close();
                 }
             }
         }
@@ -217,35 +214,5 @@ namespace Logica
                 return Historial;
             }         
         }
-        public void Guardarlistasuper(List<Ingrediente> listasuper)
-        {
-            string R = JsonConvert.SerializeObject(listasuper, Formatting.Indented);
-            File.WriteAllText(direcciones[6], R);
-        }
-
-        public List<Ingrediente> Buscarlistasuper()
-        {
-            List<Ingrediente> listasuper = new List<Ingrediente>();
-            StreamReader r = new StreamReader(direcciones[6]);
-            string jsonString = r.ReadToEnd();
-            r.Close();
-            if (jsonString == "true"||jsonString=="false")
-                return listasuper;
-            else
-            {
-                listasuper = JsonConvert.DeserializeObject<List<Ingrediente>>(jsonString);
-                return listasuper;
-            }          
-        }
-
-        //List<b> LB = LP.where(x is bebidas). select(x as bebidas).tolist
-        //a los ingredientes en las recetas son guardados como codigos, y las recetas tambien son codigos
-        /*obtener REcetas(parametros) ADmin recetas
-         1) leer
-         2) filtrar
-         3) foreach c recetas para buscar por los filrtos
-         */
-        // [Json ignore] hace que ignore el json
-        // Public list<ing>
     }
 }

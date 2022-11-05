@@ -180,5 +180,23 @@ namespace Forms
             TxtProducto.Text = "";
             actualizargrilla();
         }
+
+        private void CMBTiposComida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+
+            }
+            else e.Handled = true;
+        }
+
+        private void CMBTIpoReceta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+
+            }
+            else e.Handled = true;
+        }
     }
 }

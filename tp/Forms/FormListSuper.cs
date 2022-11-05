@@ -132,5 +132,65 @@ namespace Forms
 
             ActualizarGrilla();
         }
+
+        private void TxtMenor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtMenor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtMayor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtMayor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtPrecioMenor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtPrecioMayor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtPrecioMayor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void CMBTipos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+
+            }
+            else e.Handled = true;
+        }
+
+        private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        }
     }
 }

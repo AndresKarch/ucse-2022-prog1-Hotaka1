@@ -157,6 +157,7 @@
             this.CMBTipos.Name = "CMBTipos";
             this.CMBTipos.Size = new System.Drawing.Size(121, 21);
             this.CMBTipos.TabIndex = 20;
+            this.CMBTipos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CMBTipos_KeyPress);
             // 
             // label3
             // 
@@ -173,6 +174,8 @@
             this.TxtMenor.Name = "TxtMenor";
             this.TxtMenor.Size = new System.Drawing.Size(46, 20);
             this.TxtMenor.TabIndex = 23;
+            this.TxtMenor.TextChanged += new System.EventHandler(this.TxtMenor_TextChanged);
+            this.TxtMenor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMenor_KeyPress);
             // 
             // TxtMayor
             // 
@@ -180,6 +183,8 @@
             this.TxtMayor.Name = "TxtMayor";
             this.TxtMayor.Size = new System.Drawing.Size(46, 20);
             this.TxtMayor.TabIndex = 24;
+            this.TxtMayor.TextChanged += new System.EventHandler(this.TxtMayor_TextChanged);
+            this.TxtMayor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMayor_KeyPress);
             // 
             // label4
             // 
@@ -205,6 +210,8 @@
             this.TxtPrecioMayor.Name = "TxtPrecioMayor";
             this.TxtPrecioMayor.Size = new System.Drawing.Size(46, 20);
             this.TxtPrecioMayor.TabIndex = 27;
+            this.TxtPrecioMayor.TextChanged += new System.EventHandler(this.TxtPrecioMayor_TextChanged);
+            this.TxtPrecioMayor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecioMayor_KeyPress);
             // 
             // TxtPrecioMenor
             // 
@@ -212,6 +219,7 @@
             this.TxtPrecioMenor.Name = "TxtPrecioMenor";
             this.TxtPrecioMenor.Size = new System.Drawing.Size(46, 20);
             this.TxtPrecioMenor.TabIndex = 26;
+            this.TxtPrecioMenor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecioMenor_KeyPress);
             // 
             // label6
             // 
@@ -238,6 +246,7 @@
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(121, 20);
             this.TxtNombre.TabIndex = 31;
+            this.TxtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombre_KeyPress);
             // 
             // label2
             // 
